@@ -68,50 +68,64 @@
           <button type="button" class="hero-btn btn" data-modal-open>Замовити послугу</button>
         </div>
         <div class="hero-overlay is-hidden" data-modal>
-          <div class="hero-modal">
-            <button type="button" data-modal-close class="hero-modal-close-btn">
-              <svg class="hero-modal-close-icon">
+          <div class="modal">
+            <button type="button" data-modal-close class="modal-close-btn">
+              <svg class="modal-close-icon">
                 <use href="./images/icons.svg#icon-close"></use>
               </svg>
             </button>
-            <form class="hero-modal-form">
-              <p class="hero-modal-form-title">Залиште свої дані, ми вам передзвонимо</p>
-              <div class="hero-modal-form-field">
-                <label for="name" class="hero-modal-form-label">Ім'я</label>
-                <input type="text" name="client-name" id="name" class="hero-modal-form-input" />
+            <form class="modal-form" autocomplete="off">
+              <p class="modal-form-title">Залиште свої дані, ми вам передзвонимо</p>
+              <div class="modal-form-input-wrap">
+                <label class="modal-form-field">
+                  <span class="modal-form-label">Ім'я</span>
+                  <input type="text" name="name" placeholder=" " class="modal-form-input" />
+                  <svg class="modal-form-icon">
+                    <use href="./images/icons.svg#icon-person"></use>
+                  </svg>
+                </label>
+                <label class="modal-form-field">
+                  <span class="modal-form-label">Телефон</span>
+                  <input type="tel" name="tel" placeholder=" " class="modal-form-input" />
+                  <svg class="modal-form-icon">
+                    <use href="./images/icons.svg#icon-phone"></use>
+                  </svg>
+                </label>
+                <label class="modal-form-field">
+                  <span class="modal-form-label">Пошта</span>
+                  <input type="email" name="email" placeholder=" " class="modal-form-input" />
+                  <svg class="modal-form-icon">
+                    <use href="./images/icons.svg#icon-email"></use>
+                  </svg>
+                </label>
+                <label class="modal-form-field">
+                  <span class="modal-form-label">Коментар</span>
+                  <textarea
+                    name="comment"
+                    rows="5"
+                    placeholder="Введіть текст"
+                    class="modal-form-input comment-input"
+                  ></textarea>
+                </label>
               </div>
-              <div class="hero-modal-form-field">
-                <label for="tel" class="hero-modal-form-label">Телефон</label>
-                <input type="tel" name="client-tel" id="tel" class="hero-modal-form-input" />
-              </div>
-              <div class="hero-modal-form-field">
-                <label for="email" class="hero-modal-form-label">Пошта</label>
-                <input type="email" name="client-email" id="email" class="hero-modal-form-input" />
-              </div>
-              <div class="hero-modal-form-field">
-                <label for="comment" class="hero-modal-form-label">Коментар</label>
-                <textarea
-                  name="comment"
-                  id="comment"
-                  rows="10"
-                  placeholder="Введіть текст"
-                  class="hero-modal-form-input"
-                ></textarea>
-              </div>
-              <div role="group" class="hero-modal-form-policy">
+              <label class="modal-form-policy">
                 <input
                   type="checkbox"
                   name="policy"
                   value="policy"
-                  id="policy"
-                  class="hero-modal-form-policy-input"
+                  class="modal-form-policy-checkbox visually-hidden"
                 />
-                <label for="policy" class="hero-modal-form-policy-label">
+                <span class="modal-form-policy-box"></span>
+                <svg class="modal-form-policy-icon" width="16" height="15">
+                  <use href="./images/icons.svg#icon-check"></use>
+                </svg>
+
+                <p class="modal-form-policy-label">
                   Погоджуюся з розсилкою та приймаю
-                  <a href="" class="policy-link">Умови договору</a>
-                </label>
-              </div>
-              <button type="submit" class="hero-modal-form-btn btn">Відправити</button>
+                  <a href="" class="modal-form-policy-link">Умови договору</a>
+                </p>
+              </label>
+              <button type="submit" class="modal-form-btn btn">Відправити</button>
             </form>
           </div>
         </div>
@@ -380,26 +394,6 @@
             </li>
           </ul>
         </div>
-        <!-- ICONS -->
-        <!-- <div class="new-icons">
-          <ul class="new-icons-list">
-            <li class="new-icons-item">
-              <svg class="icon-email" width="32" height="24">
-                <use href="./images/icons.svg#icon-email"></use>
-              </svg>
-            </li>
-            <li class="new-icons-item">
-              <svg class="icon-person" width="24" height="24">
-                <use href="./images/icons.svg#icon-person"></use>
-              </svg>
-            </li>
-            <li class="new-icons-item">
-              <svg class="icon-phone" width="24" height="24">
-                <use href="./images/icons.svg#icon-phone"></use>
-              </svg>
-            </li>
-          </ul>
-        </div> -->
       </section>
       <!-- Постійні клієнти -->
       <section class="section">
@@ -512,9 +506,10 @@
             </li>
           </ul>
         </div>
+        <!-- Форма підписки -->
         <div class="subscribe">
           <p class="subscribe-tagline">Підпишіться на розсилку</p>
-          <form class="subscribe-form">
+          <form class="subscribe-form" autocomplete="off">
             <label for="email"></label>
             <input
               type="email"

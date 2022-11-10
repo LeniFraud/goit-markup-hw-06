@@ -218,18 +218,18 @@ textarea {
   transition: opacity var(--duration) var(--timing-function);
 }
 
-.hero-overlay.is-hidden {
+.is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
 }
 
-.hero-overlay.is-hidden .hero-modal {
+.is-hidden .hero-modal {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.5);
 }
 
-.hero-modal {
+.modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -245,7 +245,7 @@ textarea {
     opacity var(--duration) var(--timing-function);
 }
 
-.hero-modal-close-btn {
+.modal-close-btn {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -261,42 +261,51 @@ textarea {
   background-color: transparent;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+  transition: color var(--duration) var(--timing-function);
 }
 
-.hero-modal-close-btn:hover,
-.hero-modal-close-btn:focus {
+.modal-close-btn:hover,
+.modal-close-btn:focus {
   color: var(--accent-color);
 }
 
-.hero-modal-close-icon {
+.modal-close-icon {
   width: 18px;
   height: 18px;
   fill: currentColor;
 }
 
-.hero-modal-form {
+.modal-form {
   padding: 48px 40px 40px;
 }
 
-.hero-modal-form-title {
+.modal-form-title {
   margin-bottom: 4px;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.15;
 }
 
-.hero-modal-form-field {
+.modal-form-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-form-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-bottom: 10px;
+  color: var(--page-text-color);
+  transition: color var(--duration) var(--timing-function);
 }
 
-.hero-modal-form-field:nth-child(5) {
-  margin-bottom: 20px;
+.modal-form-field:focus-within {
+  color: var(--accent-color);
 }
 
-.hero-modal-form-label {
+.modal-form-label {
   margin-bottom: 4px;
   font-size: 12px;
   line-height: 1.17;
@@ -304,14 +313,39 @@ textarea {
   color: var(--secondary-text-color);
 }
 
-.hero-modal-form-input {
+.modal-form-input {
   margin: 0;
-  padding: 11px 12px;
+  padding: 11px 42px;
+  color: var(--page-text-color);
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
+  outline: none;
+  transition: border-color var(--duration) var(--timing-function);
 }
 
-.hero-modal-form-input::placeholder {
+.modal-form-input:focus,
+.modal-form-input:not(:placeholder-shown) {
+  border-color: var(--accent-color);
+}
+
+.modal-form-input:not(:placeholder-shown) + .modal-form-icon {
+  fill: var(--accent-color);
+}
+
+.modal-form-icon {
+  position: absolute;
+  top: 29px;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.comment-input {
+  padding: 12px 16px;
+}
+
+.comment-input::placeholder {
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
@@ -319,31 +353,52 @@ textarea {
   color: rgba(117, 117, 117, 0.5);
 }
 
-.hero-modal-form-policy {
+.modal-form-policy {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
-.hero-modal-form-policy-input {
+.modal-form-policy-box {
+  width: 16px;
+  height: 15px;
+  border: 2px solid #212121;
+  border-radius: 2px;
 }
 
-/* accent-color: tomato; */
+.modal-form-policy-icon {
+  position: absolute;
+  z-index: -1;
+  top: 4px;
+  left: 19px;
+}
 
-.hero-modal-form-policy-label {
+.modal-form-policy-label {
   margin-left: 8px;
   font-size: var(--small-text-size);
   line-height: 1.71;
   color: var(--secondary-text-color);
 }
 
-.policy-link {
+.modal-form-policy-checkbox:checked + .modal-form-policy-box {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.modal-form-policy-checkbox:checked ~ .modal-form-policy-icon {
+  z-index: 2;
+}
+
+.modal-form-policy-link {
   color: var(--accent-color);
 }
 
-.hero-modal-form-btn {
-  padding: 10px 52px;
+.modal-form-btn {
+  min-width: 200px;
+  height: 50px;
 }
 
 /* Особливості роботи */
@@ -606,9 +661,10 @@ textarea {
   transition: background-color var(--duration) var(--timing-function);
 }
 
-/* Підписатись */
+/* Форма підписки */
 
 .subscribe {
+  min-width: 570px;
   margin-left: auto;
 }
 
@@ -617,13 +673,15 @@ textarea {
 }
 
 .subscribe-form-input {
+  flex-grow: 1;
   padding: 15px 16px;
-  min-width: 358px;
   color: var(--primary-text-color);
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   border-radius: 4px;
+  outline: none;
+  transition: border-color var(--duration) var(--timing-function);
 }
 
 .subscribe-form-input::placeholder {
@@ -632,10 +690,17 @@ textarea {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.subscribe-form-input:focus,
+.subscribe-form-input:not(:placeholder-shown) {
+  border-color: var(--accent-color);
+}
+
 .subscribe-btn {
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 10px 28px;
+  min-width: 200px;
+  height: 50px;
   margin-left: 12px;
 }
 
@@ -759,22 +824,4 @@ textarea {
   font-size: var(--medium-text-size);
   line-height: 1.88;
   color: var(--secondary-text-color);
-}
-
-/* DELETE */
-.new-icons {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  margin-left: 100px;
-}
-
-.new-icons-item {
-  margin-right: 20px;
-}
-
-.icon-email,
-.icon-person,
-.icon-phone {
-  fill: var(--accent-color);
 }
