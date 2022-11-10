@@ -281,7 +281,6 @@ textarea {
 
 .modal-form-title {
   margin-bottom: 4px;
-  font-weight: 700;
   font-size: 20px;
   line-height: 1.15;
 }
@@ -378,6 +377,7 @@ textarea {
 
 .modal-form-policy-label {
   margin-left: 8px;
+  font-weight: 400;
   font-size: var(--small-text-size);
   line-height: 1.71;
   color: var(--secondary-text-color);
